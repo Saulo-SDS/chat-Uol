@@ -29,8 +29,34 @@ body {
     align-items: center;
     height: 40px;
     margin-bottom: 4px;
-    background-color: #c3c3c3;
+    background-color: #dcdcdc;
 }
+
+
+.mensage p{
+    padding-top: 2px;
+}
+
+.mensage h2 {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: black;
+    margin-right: 4px;
+}
+
+.mensage h3 {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #AAAAAA;
+    margin-right: 10px;
+}
+
 
 img {
     width: 75px;

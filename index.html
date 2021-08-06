@@ -8,33 +8,20 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Chat Uol</title>
 </head>
-<body>
+<body onload="insertParticipant();">
     <header class="top">
         <div class="top-icons">
             <img src="assets/logo.png" alt="">
             <ion-icon name="people"></ion-icon>
         </div>
     </header>
-
-    <main>
-        <div class="mensage">oi eu sou goku</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">testando...</div>
-        <div class="mensage">Silêncio kakaroto</div>
+    
+    <main class="mensagens">
+        <div class="mensage">
+            <h3>(02:15:14)</h3>
+            <h2>goku</h2>
+            <p>oi eu sou goku</p>
+        </div>
     </main>
     <div class="bottom-bar">
         <div class="send-mensage">
@@ -43,7 +30,7 @@
         </div>
     </div>
     
-    <div class="side-bar">
+    <div class="side-bar hidden">
         <div class="active-participants">
             <div class="title">
                 <h6>Escolha um contato <br>
@@ -82,8 +69,8 @@
         </div>
     </div>
     
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="script/script.js"></script>
 </body>
 </html>
