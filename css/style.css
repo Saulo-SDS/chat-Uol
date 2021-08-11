@@ -9,9 +9,9 @@ body {
     height: 80px;
     width: 100%;
     box-shadow: 0px 4px 6px 0px #0000000D;
+    position: fixed;
     top: 0;
     left: 0;
-    position: fixed;
 }
 
 .top-icons {
@@ -27,11 +27,11 @@ body {
 .mensage {
     display: flex;
     align-items: center;
-    height: 40px;
+    width: 100%;
+    min-height: 40px;
     margin-bottom: 4px;
     background-color: #dcdcdc;
 }
-
 
 .mensage p{
     padding-top: 2px;
@@ -58,6 +58,43 @@ body {
 }
 
 
+.mensage .info {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: black;
+    margin-right: 4px;
+}
+
+.mensage .time {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #AAAAAA;
+    margin-right: 10px;
+} 
+
+.private_message{
+    background-color: #FFDEDE;
+}
+
+.message{
+    background-color: #ffffff;
+}
+
+.status{
+    background-color: #dcdcdc;
+}
+
+.norm{
+    font-style: normal;
+    font-weight: 400;
+}
+
 img {
     width: 75px;
     height: 53px;
@@ -78,6 +115,12 @@ img {
     left: 0;
 }
 
+.mensagens {
+    width: 100%;
+    margin-top: 110px;
+    margin-bottom: 110px;
+}
+
 .send-mensage {
     display: flex;
     justify-content: space-between;
@@ -89,11 +132,6 @@ img {
 .send-mensage ion-icon {
     width: 26px;
     height: 26px;
-}
-
-main {
-    margin-top: 110px;
-    margin-bottom: 110px;
 }
 
 .send-mensage input {
@@ -147,7 +185,7 @@ input:focus {
 
 .user, .option {
     height: auto;
-    width: auto;
+    width: auto;menssagens
     display: flex;
     align-items: center;
     font-family: Roboto;

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Chat Uol</title>
 </head>
-<body onload="insertParticipant();">
+<body onload="initChat();">
     <header class="top">
         <div class="top-icons">
             <img src="assets/logo.png" alt="">
@@ -17,16 +17,13 @@
     </header>
     
     <main class="mensagens">
-        <div class="mensage">
-            <h3>(02:15:14)</h3>
-            <h2>goku</h2>
-            <p>oi eu sou goku</p>
-        </div>
+
     </main>
+    
     <div class="bottom-bar">
         <div class="send-mensage">
             <input type="text" id="textSend" placeholder="Escreva aqui...">
-            <ion-icon name="paper-plane-outline"></ion-icon>
+            <ion-icon name="paper-plane-outline" onclick="sendMensage();"></ion-icon>
         </div>
     </div>
     
