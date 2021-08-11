@@ -75,9 +75,7 @@ function renderMessages(response){
 
     const lastMessage = document.querySelector('.mensagens div:last-child');
     lastMessage.scrollIntoView();
-
 }
-
 
 function sendMensage(){
 
@@ -86,9 +84,7 @@ function sendMensage(){
     let type = chosenVisibility.parentNode.querySelector("p").innerHTML === "Público" ? "message" : "private_message";
  
     infoMensage = { from: userName.name, to: to, text: InputMensagem.value, type: type};
-    console.log(infoMensage);
-
-    /*const response = axios.post(URL_MENSAGE, infoMensage);
+    const response = axios.post(URL_MENSAGE, infoMensage);
 
     response.then((sucess)=>{
         console.log("mensagem enviada com sucesso");
@@ -100,7 +96,7 @@ function sendMensage(){
         console.log("erro ao enviar mensagem");
         window.location.reload();
     });
-*/
+
     InputMensagem.value = "";
 }
 
@@ -128,7 +124,6 @@ function messageRecipient(element){
     }
 }
 
-
 function messageVisibility(element){
 
     if(chosenUser.parentNode.querySelector("p").innerHTML !== "Todos"){
@@ -143,7 +138,6 @@ function searchPaticipants(){
     const requestParticipants = axios.get(URL_PARTICIPANTS);
     requestParticipants.then(renderParticipants);
 }
-
 
 function renderParticipants(response){
 
@@ -167,10 +161,22 @@ function renderParticipants(response){
     }
 }
 
+function checkInput(){
+    let inputEnter = document.querySelector("#textSend");
+    inputEnter.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.querySelector(".confirm-message").click();
+        }
+    });
+}
+
+
 function initChat(){
     
     insertParticipant();
     setInterval(menssage, 3000); 
     setInterval(keepConnection, 5000);
     setInterval(searchPaticipants, 10000);
+    checkInput();
 }
