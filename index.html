@@ -12,7 +12,7 @@
     <header class="top">
         <div class="top-icons">
             <img src="assets/logo.png" alt="">
-            <ion-icon name="people"></ion-icon>
+            <ion-icon name="people" onclick="openSideBar();"></ion-icon>
         </div>
     </header>
     
@@ -27,7 +27,10 @@
         </div>
     </div>
     
-    <div class="side-bar hidden">
+    <div class="side-bar hiden">
+        <div class="film" onclick="hideSideBar();">
+        </div>
+
         <div class="active-participants">
             <div class="title">
                 <h6>Escolha um contato <br>
@@ -35,34 +38,26 @@
             </div>
 
             <div class="users">
-                <div class="user">
-                    <ion-icon name="people"></ion-icon>
-                    <p>Todos</p>
-                    <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
-                </div>
-                <div class="user">
-                    <ion-icon name="person-circle"></ion-icon>
-                    <p>Fulano</p>
-                    <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
-                </div>
+                
             </div>
 
             <div class="choose-visibility">
                 <div class="title">
                     <h6>Escolha a visibilidade:</h6>
                 </div>
-                <div class="option">
+
+                <div class="option" onclick="messageVisibility(this)">
                     <ion-icon name="lock-open"></ion-icon>
                     <p>Público</p>
-                    <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
+                    <ion-icon name="checkmark-outline" class="check hiden"></ion-icon>
                 </div>
-                <div class="option">
+
+                <div class="option" onclick="messageVisibility(this)">
                     <ion-icon name="lock-closed"></ion-icon>
                     <p>Reservadamente</p>
-                    <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
+                    <ion-icon name="checkmark-outline" class="check hiden"></ion-icon>
                 </div>
-            </div>
-            
+            </div>   
         </div>
     </div>
     

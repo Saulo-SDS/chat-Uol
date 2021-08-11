@@ -2,6 +2,11 @@
 
 body {
     background-color: #F3F3F3;
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 .top {
@@ -25,58 +30,35 @@ body {
 }
 
 .mensage {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    width: 100%;
+    line-height: 16px;
     display: flex;
     align-items: center;
     width: 100%;
     min-height: 40px;
     margin-bottom: 4px;
+    overflow-wrap: break-word;
     background-color: #dcdcdc;
 }
 
 .mensage p{
     padding-top: 2px;
+    padding-right: 5px;
 }
-
-.mensage h2 {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 16px;
-    color: black;
-    margin-right: 4px;
-}
-
-.mensage h3 {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    color: #AAAAAA;
-    margin-right: 10px;
-}
-
 
 .mensage .info {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
     font-weight: 700;
-    font-size: 14px;
-    line-height: 16px;
     color: black;
     margin-right: 4px;
 }
 
+
 .mensage .time {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    color: #AAAAAA;
-    margin-right: 10px;
-} 
+    color: #aaaaaa;
+}
 
 .private_message{
     background-color: #FFDEDE;
@@ -154,7 +136,7 @@ input:focus {
 }
 
 .side-bar {
-    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
     width: 100%;
     height: 100%;
     display: flex;
@@ -162,6 +144,12 @@ input:focus {
     position: fixed;
     top: 0;
     z-index: 2;
+}
+
+.film {
+    background-color: rgb(0, 0, 0, 0.6);
+    width: 31%;
+    height: 100%;
 }
 
 .active-participants {
@@ -183,10 +171,15 @@ input:focus {
     text-align: center;
 }
 
+.text {
+    color: black;
+}
+
 .user, .option {
     height: auto;
-    width: auto;menssagens
+    width: auto;
     display: flex;
+    position: relative;
     align-items: center;
     font-family: Roboto;
     font-size: 16px;
@@ -196,23 +189,32 @@ input:focus {
     box-sizing: border-box;
 }
 
+.users {
+    max-height: 50%;
+    overflow:auto;
+}
+
 .user ion-icon:first-child, .option ion-icon:first-child {
     width: 25px;
     height: 25px;
 }
 
 .check {
-    text-align: right;
     position: absolute;
     right: 15px;
     width: 15px;
     height: 15px;
+    color: #28BB25;
+    --ionicon-stroke-width: 130px;
 }
 
-.user p, option p {
+.user p, .option p {
     margin-left: 5px;
 }
+.option p {
+    padding-top: 5px;
+}
 
-.hidden {
+.hiden {
     display: none;
 }
