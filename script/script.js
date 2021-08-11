@@ -76,7 +76,23 @@ function renderMessages(response){
 
 
 function sendMensage(){
-    console.log("funcionando");
+    let InputMensagem = document.querySelector('#textSend');
+    infoMensage = { from: userName.name, to: "Todos", text: InputMensagem.value, type: "message"};
+    console.log(infoMensage);
+    const response = axios.post(URL_MENSAGE, infoMensage);
+
+    response.then((sucess)=>{
+        console.log("mensagem enviada com sucesso");
+    });
+
+    response.catch((err)=>{
+        const statusCode = err.response.status;
+        console.log(statusCode);
+        console.log("erro ao enviar mensagem");
+        window.location.reload();
+    });
+
+    InputMensagem.value = "";
 }
 
 
