@@ -86,10 +86,9 @@ function sendMensage(){
 
     response.catch((err)=>{
         const statusCode = err.response.status;
-        console.log("erro ao enviar mensagem");
+        alert("erro ao enviar mensagem, inicia o chat novamente");
         window.location.reload();
     });
-
     InputMensagem.value = "";
 }
 
@@ -158,22 +157,11 @@ function messageVisibility(element){
     chosenVisibility.classList.remove("hiden");
 }
 
-function checkInputMensage(){
-    let inputEnter = document.querySelector(".text-send");
-    inputEnter.addEventListener("keyup", function (event) {
+function checkEnter(element){
+    element.addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
             event.preventDefault();
-            document.querySelector(".confirm-message").click();
-        }
-    });
-}
-
-function checkInputName(){
-    let inputEnter = document.querySelector(".inputName");
-    inputEnter.addEventListener("keyup", function (event) {
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            document.querySelector(".confirm-button").click();
+            element.parentNode.querySelector(".send").click();
         }
     });
 }
@@ -211,7 +199,5 @@ function initChat(){
     setInterval(menssage, 3000); 
     setInterval(keepConnection, 5000);
     setInterval(searchPaticipants, 10000);
-    checkInputMensage();
-    checkInputName();
 }
 

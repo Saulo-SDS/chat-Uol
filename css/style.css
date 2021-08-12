@@ -168,6 +168,7 @@ img {
 }
 
 .send-mensage {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -179,14 +180,14 @@ img {
     width: 80%;
 }
 
-.send-mensage div input {
+.send-mensage input {
     font-family: Roboto;
     font-size: 18px;
     font-style: italic;
     line-height: 21px;
     color: black;
     border: none;
-    width: 100%;
+    width: 80%;
     height: 30px;
 }
 
@@ -196,12 +197,13 @@ img {
 }
 
 .message-description {
+    position: absolute;
     color: #AEAEAE;
     width: 310px;
     height: 25px;
     font-size: 14px;
-    font-family: 'Roboto', sans-serif;
     padding-left: 3px;
+    bottom: 0;
 }
 
 .text-send::-webkit-input-placeholder {
