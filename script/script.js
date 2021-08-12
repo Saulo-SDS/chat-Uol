@@ -3,10 +3,12 @@ const URL_MENSAGE = "https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/mess
 const URL_PARTICIPANTS = "https://mock-api.bootcamp.respondeai.com.br/api/v3/uol/participants";
 
 let userName = { name: ""};
+let infoDescription = {to: "", visibility: ""};
 let chosenUser;
 let chosenVisibility;
 
 function insertParticipant() {
+
     const inputName = document.querySelector(".inputName");
     let name = inputName.value;
     userName.name = name;
@@ -24,7 +26,6 @@ function insertParticipant() {
         } 
     });
 
-    inputName.parentNode.classList.add("hiden");
     menssage();
     descriptionMensage();
     searchPaticipants();
@@ -38,7 +39,6 @@ function keepConnection() {
 function menssage(){
     const messages = axios.get(URL_MENSAGE);
     messages.then(renderMessages);
-
 }
 
 function renderMessages(response){
@@ -46,34 +46,24 @@ function renderMessages(response){
     const mensages = document.querySelector(".container");
     mensages.innerHTML = "";
     const data = response.data;
+
     for(let i = 0; i < data.length; ++i){
         let typeMensege = data[i].type;
         let to = data[i].to;
-        let mensage;
+        let description = "";
 
-        if(typeMensege === "private_message" && userName === to){
-            mensage = `<div class="mensage ${typeMensege}">${to}
-            <p><span class="time">(${data[i].time})</span>
-            <span class="info">${data[i].from} Reservadamente para ${to}:</span>
-            <span class="text">${data[i].text}</span>
-            </p>
-            </div>`
-        }else if(typeMensege === "status"){
-            mensage = `<div class="mensage ${typeMensege}">
-            <p><span class="time">(${data[i].time})</span>
-            <span class="info">${data[i].from}</span>
-            <span class="text">${data[i].text}</span>
-            </p>
-            </div>`
-        }else{
-            mensage = `<div class="mensage ${typeMensege}">
-            <p><span class="time">(${data[i].time})</span>
-            <span class="info">${data[i].from} <span class="norm">para</span> ${to}:</span>
-            <span class="text">${data[i].text}</span>
-            </p>
-            </div>`
+        if(typeMensege === "private_message" && userName.name === to){
+            description = ` <span class="norm">Reservadamente para </span>${to}<span class="norm">:</span>`;
+        }else if(typeMensege !== "status"){
+            description = ` <span class="norm">para</span> ${to}<span class="norm">:</span>`;
         }
-
+       
+        let mensage = `<div class="mensage ${typeMensege}">
+        <p><span class="time">(${data[i].time})</span>
+        <span class="info">${data[i].from} ${description}</span>
+        <span class="text">${data[i].text}</span>
+        </p>
+        </div>`
         mensages.innerHTML += mensage;
     }
 
@@ -83,9 +73,9 @@ function renderMessages(response){
 
 function sendMensage(){
 
-    let InputMensagem = document.querySelector('#textSend');
-    let to = chosenUser.parentNode.querySelector("p").innerHTML;
-    let type = chosenVisibility.parentNode.querySelector("p").innerHTML === "Público" ? "message" : "private_message";
+    let InputMensagem = document.querySelector('.text-send');
+    let to = infoDescription.to;
+    let type = infoDescription.visibility === "Público" ? "message" : "private_message";
  
     infoMensage = { from: userName.name, to: to, text: InputMensagem.value, type: type};
     const response = axios.post(URL_MENSAGE, infoMensage);
@@ -96,7 +86,6 @@ function sendMensage(){
 
     response.catch((err)=>{
         const statusCode = err.response.status;
-        console.log(statusCode);
         console.log("erro ao enviar mensagem");
         window.location.reload();
     });
@@ -113,30 +102,6 @@ function hideSideBar(){
     descriptionMensage();
     let side = document.querySelector(".side-bar");
     side.classList.toggle("hiden");
-}
-
-function messageRecipient(element){
-
-    if(chosenUser) chosenUser.classList.add("hiden");
-    chosenUser = element.querySelector(".check");
-    chosenUser.classList.remove("hiden");
-
-    if(chosenUser.parentNode.querySelector("p").innerHTML === "Todos"){
-        if(chosenVisibility) chosenVisibility.classList.add("hiden");
-
-        chosenVisibility = document.querySelector(".option .check");
-        chosenVisibility.classList.remove("hiden");
-    }
-}
-
-function messageVisibility(element){
-
-    if(chosenUser.parentNode.querySelector("p").innerHTML !== "Todos"){
-        if(chosenVisibility) chosenVisibility.classList.add("hiden");
-        
-        chosenVisibility = element.querySelector(".check");
-        chosenVisibility.classList.remove("hiden");
-    }
 }
 
 function searchPaticipants(){
@@ -156,17 +121,44 @@ function renderParticipants(response){
                            </div>`;
     users.innerHTML += defaultOption;
     for(let i = 0; i < data.length; ++i){
-        let user = `<div class="user" onclick="messageRecipient(this);">
-                        <ion-icon name="person-circle"></ion-icon>
-                        <p>${data[i].name}</p>
-                        <ion-icon name="checkmark-outline" class="check hiden" ></ion-icon>
-                    </div>`;
+        let hiden = "hiden"
 
-        users.innerHTML += user;
+        if(data[i].name === infoDescription.to) hiden = "";
+        if(data[i].name !== "Todos"){
+            let user = `<div class="user" onclick="messageRecipient(this);">
+                            <ion-icon name="person-circle"></ion-icon>
+                            <p>${data[i].name}</p>
+                            <ion-icon name="checkmark-outline" class="check ${hiden}" ></ion-icon>
+                        </div>`;
+
+            users.innerHTML += user;
+        }
     }
 }
 
-function checkInput(){
+function messageRecipient(element){
+
+    if(chosenUser) chosenUser.classList.add("hiden");
+    chosenUser = element.querySelector(".check");
+    chosenUser.classList.remove("hiden");
+
+    if(chosenUser.parentNode.querySelector("p").innerHTML === "Todos"){
+        if(chosenVisibility) chosenVisibility.classList.add("hiden");
+
+        chosenVisibility = document.querySelector(".option .check");
+        chosenVisibility.classList.remove("hiden");
+    }
+}
+
+function messageVisibility(element){
+    if(chosenUser && chosenUser.parentNode.querySelector("p").innerHTML === "Todos") return;
+    if(chosenVisibility) chosenVisibility.classList.add("hiden");
+    
+    chosenVisibility = element.querySelector(".check");
+    chosenVisibility.classList.remove("hiden");
+}
+
+function checkInputMensage(){
     let inputEnter = document.querySelector(".text-send");
     inputEnter.addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
@@ -174,6 +166,34 @@ function checkInput(){
             document.querySelector(".confirm-message").click();
         }
     });
+}
+
+function checkInputName(){
+    let inputEnter = document.querySelector(".inputName");
+    inputEnter.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.querySelector(".confirm-button").click();
+        }
+    });
+}
+
+function descriptionMensage(){
+    let description = document.querySelector(".message-description");
+    let to = "Todos";
+    let visibility = "Público";
+
+    if(chosenUser !== undefined){
+        let user = chosenUser.parentNode.querySelector("p").innerHTML;
+        to = user;
+        if (chosenVisibility !== undefined)  visibility = chosenVisibility.parentNode.querySelector("p").innerHTML, description.innerHTML = `Enviando para ${user} (${visibility})`;
+        else description.innerHTML = `Enviando para ${user} (Público)`;
+    }else{
+        description.innerHTML = `Enviando para Todos (Público)`;
+    }
+
+    infoDescription.to = to;
+    infoDescription.visibility = visibility;
 }
 
 function enterChat(){
@@ -184,25 +204,14 @@ function enterChat(){
     setTimeout(()=>{
         document.querySelector(".menu").classList.add("hiden");
         insertParticipant();
-    },3000);
-
-}
-
-function descriptionMensage(){
-    let description = document.querySelector(".message-description");
-    if(chosenUser !== undefined){
-        let user = chosenUser.parentNode.querySelector("p").innerHTML;
-        let visibility = chosenVisibility.parentNode.querySelector("p").innerHTML;
-        if (chosenVisibility !== undefined) description.innerHTML = `Enviando para ${user} (${visibility})`;
-        else description.innerHTML = `Enviando para ${user} (Público)`;
-    }else{
-        description.innerHTML = `Enviando para Todos (Público)`;
-    }
+    },2000);
 }
 
 function initChat(){
     setInterval(menssage, 3000); 
     setInterval(keepConnection, 5000);
     setInterval(searchPaticipants, 10000);
-    checkInput();
+    checkInputMensage();
+    checkInputName();
 }
+
