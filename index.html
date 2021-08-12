@@ -8,7 +8,18 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Chat Uol</title>
 </head>
-<body onload="initChat();">
+<body>
+
+    <div class="menu">
+        <div class="logo"><img src="assets/logo.png"></div>
+        <input type="text" class="inputName" placeholder="Digite seu nome">
+        <input type="submit" class="confirm-button" value="Entrar" onclick="enterChat();">
+        <div class="loading hiden">
+            <img src="assets/loading.png" class="image-loading">
+            <p class="text-loading">Entrando...</p>
+        </div>
+    </div>
+
     <header class="top">
         <div class="top-icons">
             <img src="assets/logo.png" alt="">

@@ -7,8 +7,8 @@ let chosenUser;
 let chosenVisibility;
 
 function insertParticipant() {
-
-    let name = prompt("Escolha um nome de usuário:");
+    const inputName = document.querySelector(".inputName");
+    let name = inputName.value;
     userName.name = name;
     const requestName = axios.post(URL_PARTICIPANTS, userName);
     
@@ -23,8 +23,11 @@ function insertParticipant() {
             insertParticipant();
         } 
     });
+
+    inputName.parentNode.classList.add("hiden");
     menssage();
     searchPaticipants();
+    initChat();
 }
 
 function keepConnection() {
@@ -171,10 +174,20 @@ function checkInput(){
     });
 }
 
+function enterChat(){
+    document.querySelector(".inputName").classList.add("hiden");
+    document.querySelector(".confirm-button").classList.add("hiden");
+    document.querySelector(".loading").classList.toggle("hiden");
+  
+    setTimeout(()=>{
+        document.querySelector(".menu").classList.add("hiden");
+        insertParticipant();
+    },3000);
+
+}
 
 function initChat(){
     
-    insertParticipant();
     setInterval(menssage, 3000); 
     setInterval(keepConnection, 5000);
     setInterval(searchPaticipants, 10000);
