@@ -20,12 +20,13 @@ function insertParticipant() {
         const statusCode = err.response.status;
         if (statusCode != 200) {
             alert("Esse nome de usuário já foi escolhido! Tente novamente");
-            insertParticipant();
+            location.reload();
         } 
     });
 
     inputName.parentNode.classList.add("hiden");
     menssage();
+    descriptionMensage();
     searchPaticipants();
     initChat();
 }
@@ -42,7 +43,7 @@ function menssage(){
 
 function renderMessages(response){
 
-    const mensages = document.querySelector(".mensagens");
+    const mensages = document.querySelector(".container");
     mensages.innerHTML = "";
     const data = response.data;
     for(let i = 0; i < data.length; ++i){
@@ -76,7 +77,7 @@ function renderMessages(response){
         mensages.innerHTML += mensage;
     }
 
-    const lastMessage = document.querySelector('.mensagens div:last-child');
+    const lastMessage = document.querySelector('.container div:last-child');
     lastMessage.scrollIntoView();
 }
 
@@ -109,6 +110,7 @@ function openSideBar(){
 }
 
 function hideSideBar(){
+    descriptionMensage();
     let side = document.querySelector(".side-bar");
     side.classList.toggle("hiden");
 }
@@ -165,7 +167,7 @@ function renderParticipants(response){
 }
 
 function checkInput(){
-    let inputEnter = document.querySelector("#textSend");
+    let inputEnter = document.querySelector(".text-send");
     inputEnter.addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
             event.preventDefault();
@@ -186,8 +188,19 @@ function enterChat(){
 
 }
 
+function descriptionMensage(){
+    let description = document.querySelector(".message-description");
+    if(chosenUser !== undefined){
+        let user = chosenUser.parentNode.querySelector("p").innerHTML;
+        let visibility = chosenVisibility.parentNode.querySelector("p").innerHTML;
+        if (chosenVisibility !== undefined) description.innerHTML = `Enviando para ${user} (${visibility})`;
+        else description.innerHTML = `Enviando para ${user} (Público)`;
+    }else{
+        description.innerHTML = `Enviando para Todos (Público)`;
+    }
+}
+
 function initChat(){
-    
     setInterval(menssage, 3000); 
     setInterval(keepConnection, 5000);
     setInterval(searchPaticipants, 10000);

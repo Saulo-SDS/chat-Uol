@@ -40,7 +40,6 @@ body {
     width: 100%;
     min-height: 40px;
     margin-bottom: 4px;
-    overflow-wrap: break-word;
     background-color: #dcdcdc;
 }
 
@@ -98,10 +97,10 @@ img {
     left: 0;
 }
 
-.mensagens {
+.container {
     width: 100%;
     margin-top: 110px;
-    margin-bottom: 110px;
+    margin-bottom: 84px;
 }
 
 .send-mensage {
@@ -112,14 +111,37 @@ img {
     padding: 0px 18px 0px 17px;
 }
 
-.send-mensage ion-icon {
-    width: 26px;
-    height: 26px;
+.send-mensage div {
+    width: 80%;
 }
 
+.send-mensage div input {
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 21px;
+    color: black;
+    border: none;
+    width: 145px;
+    height: 30px;
+}
+
+.send-mensage ion-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.message-description {
+    color: #AEAEAE;
+    width: 310px;
+    height: 25px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 3px;
+}
 
 .image-loading {
-
     width: 100px;
     height: 100px;
     margin: 70px 0 20px 0;
@@ -136,18 +158,7 @@ img {
     font-size: 18px;
     font-weight: 400;
     line-height: 21px;
-    margin-left: 10 px;
-}
-
-.send-mensage input {
-    font-family: Roboto;
-    font-size: 18px;
-    font-style: italic;
-    font-weight: 400;
-    line-height: 21px;
-    border: none;
-    width: 145px;
-    height: 30px;
+    margin-left: 10px;
 }
 
 .menu {
@@ -169,12 +180,14 @@ img {
     width: 130px;
     height: 92px;
 }
+
 .confirm-button, .inputName {
     font-family: Roboto;
     font-size: 18px;
     line-height: 25px;
     text-align: center;
 }
+
 .confirm-button {
     height: 45px;
     width: 109px;
@@ -198,17 +211,27 @@ input[type="submit"] {
     border-radius: 4px;
 }
 
-input::placeholder{
-    color: #AEAEAE;
+.text-send::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: black;
+}
+
+.text-send::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: black;
+    opacity: 1;
+}
+
+.text-send:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: black;
+}
+
+textarea::placeholder {
+    padding-top: 10px;
+    color: black;
 }
 
 input:focus {
     box-shadow: 0 0 0 0;
     outline: 0;
-}
-
-::-webkit-input-placeholder {
-    color: #000000;
 }
 
 .side-bar {
@@ -282,6 +305,11 @@ input:focus {
     height: 15px;
     color: #28BB25;
     --ionicon-stroke-width: 130px;
+}
+
+p {
+    width: 100%;
+    overflow-wrap: break-word; 
 }
 
 .user p, .option p {
